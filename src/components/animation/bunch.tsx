@@ -55,7 +55,7 @@ export default function Bunch({ text, mainWords = [1] }: Props) {
                       delay: 0.3 + (key * 0.3 + index * 0.05),
                     }}
                     className={`${mainWords.includes(key) ? "text-accent" : "text-secondary"} 
-                    text-3xl lg:text-6xl`}
+                    text-4xl lg:text-5xl`}
                   >
                     {char}
                   </motion.div>

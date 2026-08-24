@@ -6,22 +6,18 @@ import { motion } from "framer-motion";
 interface Props {
   text: string;
   mainWords?: number[];
-  position?: "left" | "right" | "center";
 }
 
 export default function Opening({
   text,
   mainWords = [1],
-  position = "left",
 }: Props) {
   const words = text.split(" ");
 
   return (
     <div className="w-full flex items-center z-30 pointer-events-none">
       <div
-        className={`w-full flex flex-wrap gap-6 justify-center
-          ${position === "left" && "sm:justify-start"} 
-          ${position === "right" && "sm:justify-end"}`}
+        className={`w-full flex flex-wrap gap-6 justify-center sm:justify-start`}
       >
         {words.map((word, key) => {
           const chars = word
@@ -48,7 +44,7 @@ export default function Opening({
                     }}
                     style={{ zIndex: index * 10 }}
                     className={`${mainWords.includes(key) ? "text-accent" : "text-secondary"} 
-                    text-2xl lg:text-6xl`}
+                    text-4xl lg:text-5xl`}
                   >
                     {char}
                   </motion.div>

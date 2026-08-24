@@ -4,9 +4,63 @@
 @theme {
   --color-primary: #160033;
   --color-secondary: #ffffff;
-  --color-accent: #9E7ACC;
+  --color-accent: #653d99;
   --color-accent-dark: #381466;
-  --color-neutral: #653D99;
+
+  --animate-hero: hero-cyan 10s ease-out infinite;
+  --animate-glow: pulse-glow 10s infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  60% {
+    box-shadow: 0 0 0 0 rgba(101, 61, 153, 0.3);
+    text-shadow: none;
+  }
+  30% {
+    box-shadow:
+      0 0 10px 3px rgba(101, 61, 153, 0.85),
+      0 0 22px 8px rgba(120, 70, 175, 0.55),
+      0 0 40px 14px rgba(140, 90, 200, 0.35);
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 12px rgba(138, 43, 226, 0.9),
+      0 0 24px rgba(138, 43, 226, 0.6),
+      0 0 40px rgba(0, 255, 200, 0.5),
+      0 0 60px rgba(0, 255, 200, 0.3);
+  }
+}
+
+/* яркий маджента + фиолетовый */
+@keyframes hero-magenta {
+  0%,
+  100% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.95),
+      0 0 16px rgba(255, 0, 106, 0.9),
+      0 0 32px rgba(255, 0, 106, 0.6),
+      0 0 50px rgba(147, 51, 218, 0.4),
+      0 0 70px rgba(147, 51, 218, 0.2);
+  }
+}
+
+/* фиолетовый + циан */
+@keyframes hero-cyan {
+  0%,
+  20% {
+    text-shadow: none;
+  }
+  10% {
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 12px rgba(138, 43, 226, 0.9),
+      0 0 24px rgba(138, 43, 226, 0.6),
+      0 0 40px rgba(0, 255, 200, 0.5),
+      0 0 60px rgba(0, 255, 200, 0.3);
+  }
 }
 
 .bg-noise-overlay {
@@ -20,14 +74,16 @@
     linear-gradient(rgba(255, 255, 255, 0.04) 50%, transparent 50%),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 50%, transparent 50%);
   background-size: 30% 40%;
-  background-position: 0 0, 4px 4px;
-  opacity: 0.4
+  background-position:
+    0 0,
+    4px 4px;
+  opacity: 0.4;
 }
 
 .x-spacing {
-  @apply px-4 lg:px-50;
+  @apply px-4 md:px-30;
 }
 
 .section {
-  @apply w-full min-h-screen flex flex-col gap-y-20 pb-25 px-4 lg:px-50;
+  @apply w-full min-h-screen flex flex-col gap-y-20 pb-25 px-4 md:px-30;
 }

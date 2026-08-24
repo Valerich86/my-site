@@ -15,10 +15,10 @@ export default function Decor() {
   useEffect(() => {
     const generateCircles = () => {
       const newCircles = [];
-      const count = Math.round(Math.random() * 5 + 2);
+      const count = Math.round(Math.random() * 15 + 5);
 
       for (let i = 0; i < count; i++) {
-        const size = Math.random() * 300 + 50;
+        const size = Math.random() * 300 + 10;
         const x = Math.random() * 100;
         const y = Math.random() * 100;
 

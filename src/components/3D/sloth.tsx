@@ -93,7 +93,7 @@ const Model = ({
   );
 };
 
-export default function Sloth({isFullscreen}:{isFullscreen: boolean}) {
+export default function Sloth() {
   const targetRotation = useRef({ x: 0, y: 0 });
   const isMobile = useRef(false);
 
@@ -143,8 +143,8 @@ export default function Sloth({isFullscreen}:{isFullscreen: boolean}) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2, delay: 2 }}
-      className={`h-30 w-30 top-0 -left-5 absolute z-10 transition duration-1000 cursor-pointer`}
+      transition={{ duration: 1, delay: 1.5 }}
+      className={`h-20 w-20 lg:h-30 lg:w-30 top-0 -left-5 absolute z-10 transition duration-1000 cursor-pointer`}
       style={{ touchAction: "auto" }}
     >
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 4], fov: 50 }}>

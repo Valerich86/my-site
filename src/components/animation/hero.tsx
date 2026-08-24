@@ -1,61 +1,47 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function HeroAnimation() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          video.play().catch((e) => {
-            console.warn("Autoplay blocked", e);
-          });
-        } else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      },
-      { threshold: 0.3 },
-    );
-
-    observer.observe(video);
-
-    return () => {
-      if (video) observer.unobserve(video);
-    };
-  }, []);
-
   return (
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-        mass: 1,
-        delay: 0.3,
-      }}
-      className="w-full h-full xl:w-2/3 flex justify-center items-center overflow-hidden relative z-30"
-    >
-      <video
-        ref={videoRef}
-        className="object-cover h-auto w-full border-none rounded-2xl"
-        muted
-        playsInline
-        preload="none"
+    <div className="absolute inset-0 w-full h-full flex justify-center lg:justify-end -z-10">
+      <motion.div
+        className="h-full"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{
+          duration: 0.2,
+          delay: 1
+        }}
       >
-        <source src="/video/hero.webm" type="video/webm" />
-        Ваш браузер не поддерживает видео.
-      </video>
-    </motion.div>
+        <video
+          ref={videoRef}
+          className="w-auto h-full object-contain border-none hidden lg:block"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload={"none"}
+        >
+          <source src="/video/puzzle-desktop.webm" type="video/webm" />
+          Ваш браузер не поддерживает видео.
+        </video>
+        <video
+          ref={videoRef}
+          className="w-auto h-full object-contain translate-y-10 border-none lg:hidden"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload={"none"}
+        >
+          <source src="/video/puzzle-mobile.webm" type="video/webm" />
+          Ваш браузер не поддерживает видео.
+        </video>
+      </motion.div>
+    </div>
   );
 }

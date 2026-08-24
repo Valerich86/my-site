@@ -12,10 +12,10 @@ export const font_logo = localFont({
 // });
 
 
-export const font_accent = Mulish({
+export const font_accent = Raleway({
   weight: "700",
 })
 
-export const font_default = Manrope({
+export const font_default = Roboto({
   weight: "400",
 })
