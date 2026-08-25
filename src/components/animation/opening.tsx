@@ -10,14 +10,14 @@ interface Props {
 
 export default function Opening({
   text,
-  mainWords = [1],
+  mainWords
 }: Props) {
   const words = text.split(" ");
 
   return (
     <div className="w-full flex items-center z-30 pointer-events-none">
       <div
-        className={`w-full flex flex-wrap gap-6 justify-center sm:justify-start`}
+        className={`w-full flex flex-wrap gap-6 justify-center`}
       >
         {words.map((word, key) => {
           const chars = word
@@ -40,11 +40,11 @@ export default function Opening({
                       stiffness: 300,
                       damping: 10,
                       mass: 1,
-                      delay: 0.3 + (key * 0.3 + index * 0.05),
+                      delay: 2 + (key * 0.3 + index * 0.05),
                     }}
                     style={{ zIndex: index * 10 }}
-                    className={`${mainWords.includes(key) ? "text-accent" : "text-secondary"} 
-                    text-4xl lg:text-5xl`}
+                    className={`${mainWords && mainWords.includes(key) ? `text-accent` : "text-secondary"} 
+                    text-2xl lg:text-4xl`}
                   >
                     {char}
                   </motion.div>

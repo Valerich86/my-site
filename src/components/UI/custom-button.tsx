@@ -25,9 +25,9 @@ export default function CustomButton({
       disabled={isLoading || disabled}
       className={`${
         !isLoading && !disabled
-          ? "active:scale-98 hover:opacity-80 bg-accent cursor-pointer animate-glow"
+          ? "active:scale-98 hover:bg-violet-500 bg-accent cursor-pointer animate-glow"
           : "bg-gray-600"} px-5 py-3 rounded-full text-secondary transition duration-200 
-          outline-none w-fit border border-violet-600`}
+          outline-none w-fit border border-violet-400`}
     >
       {!isLoading ? (
         text

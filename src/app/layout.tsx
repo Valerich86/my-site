@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { font_default } from "@/lib/fonts";
 import Decor from "@/components/UI/decor";
-import Sloth from "@/components/3D/sloth";
 import Header from "@/components/UI/header";
 
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export default function RootLayout({
         <Decor />
         <Header />
         {children}
-        {/* <Sloth /> */}
       </body>
     </html>
   );

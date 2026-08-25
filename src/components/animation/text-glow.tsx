@@ -8,7 +8,7 @@ interface Props {
   breakAfterWordIndex?: number[];
 }
 
-export default function Transformation({ text, breakAfterWordIndex }: Props) {
+export default function TextGlow({ text, breakAfterWordIndex }: Props) {
   const words = text.split(" ");
 
   // Вставляем маркер переноса в нужном месте

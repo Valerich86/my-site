@@ -8,16 +8,17 @@
   --color-accent-dark: #381466;
 
   --animate-hero: hero-cyan 10s ease-out infinite;
-  --animate-glow: pulse-glow 10s infinite;
+  --animate-glow: button-glow 3s infinite;
+  --animate-link: link-glow 3s infinite;
 }
 
-@keyframes pulse-glow {
+@keyframes button-glow {
   0%,
-  60% {
+  100% {
     box-shadow: 0 0 0 0 rgba(101, 61, 153, 0.3);
     text-shadow: none;
   }
-  30% {
+  30%, 70% {
     box-shadow:
       0 0 10px 3px rgba(101, 61, 153, 0.85),
       0 0 22px 8px rgba(120, 70, 175, 0.55),
@@ -32,18 +33,18 @@
 }
 
 /* яркий маджента + фиолетовый */
-@keyframes hero-magenta {
+@keyframes link-glow {
   0%,
   100% {
     text-shadow: none;
   }
-  50% {
+  30%, 70% {
     text-shadow:
-      0 0 8px rgba(255, 255, 255, 0.95),
-      0 0 16px rgba(255, 0, 106, 0.9),
-      0 0 32px rgba(255, 0, 106, 0.6),
-      0 0 50px rgba(147, 51, 218, 0.4),
-      0 0 70px rgba(147, 51, 218, 0.2);
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 12px rgba(138, 43, 226, 0.9),
+      0 0 24px rgba(138, 43, 226, 0.6),
+      0 0 40px rgba(0, 255, 200, 0.5),
+      0 0 60px rgba(0, 255, 200, 0.3);
   }
 }
 
@@ -85,5 +86,5 @@
 }
 
 .section {
-  @apply w-full min-h-screen flex flex-col gap-y-20 pb-25 px-4 md:px-30;
+  @apply w-full min-h-screen flex flex-col gap-y-20 mt-25 px-4 md:px-30;
 }
