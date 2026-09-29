@@ -4,31 +4,19 @@ import { motion } from "framer-motion";
 import { font_default } from "@/lib/fonts";
 import Decor from "./decor";
 import ImageBlock from "./image-block";
+import { ReactNode } from "react";
 
 interface Props {
-  text: string;
-  animate?: boolean;
-  textColor?:
-    | "text-primary"
-    | "text-secondary"
-    | "text-accent-dark"
-    | "text-neutral";
-  bgColor?:
-    | "bg-primary"
-    | "bg-secondary"
-    | "bg-accent-dark"
-    | "bg-neutral"
-    | "bg-transparent";
+  children?: ReactNode;
+  className?: string;
 }
 
 export default function GlassBlock({
-  text,
-  animate = true,
-  textColor = "text-secondary",
-  bgColor = "bg-transparent",
+  children,
+  className="w-full"
 }: Props) {
   return (
-    <div className="w-full relative z-20">
+    <div className={`w-full sm:w-125 lg:w-75 h-75 sm:h-125 lg:h-75 z-20`}>
       <motion.div
         initial={{ scaleY: 0 }}
         whileInView={{ scaleY: 1 }}
@@ -40,16 +28,14 @@ export default function GlassBlock({
           mass: 1,
         }}
         className={
-          `text-secondary backdrop-blur-sm relative 
+          `text-secondary backdrop-blur-sm relative z-20
           bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2)_20%,rgba(255,255,255,0.1)_60%)]
-          w-full py-10 flex items-center px-4 overflow-hidden 
+          w-full h-full py-10 flex items-center px-4 overflow-hidden 
           rounded-2xl border border-accent-dark/20`
         }
       >
         <div className="absolute inset-0 bg-noise-overlay z-10" />
-          <pre className={`${font_default.className} pointer-events-none whitespace-pre-wrap text-lg`}>
-            {text}
-          </pre>
+        {children}
       </motion.div>
     </div>
   );

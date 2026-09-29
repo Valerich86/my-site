@@ -25,7 +25,7 @@ export default function Bunch({ text, mainWords = [1] }: Props) {
   return (
     <div className="w-full flex items-center z-30 pointer-events-none">
       <div
-        className={`w-full flex flex-wrap gap-6 justify-center sm:justify-start ${font_accent.className}`}
+        className={`w-full flex flex-wrap gap-6 justify-center ${font_accent.className}`}
       >
         {words.map((word, key) => {
           const chars = word
@@ -35,17 +35,18 @@ export default function Bunch({ text, mainWords = [1] }: Props) {
             <div className={`inline-flex items-start`} key={key}>
               {chars.map((char, index) => {
                 const positionX = index > 10 ? -50 : 50;
-                const positionY = -10 - key * 20;
+                const positionY = -100 - key * 20;
                 const rotation = getRandomValue(index, -360, 360, key);
 
                 return (
                   <motion.div
                     key={index}
                     initial={{
+                      opacity: 0,
                       y: positionY,
                       rotate: rotation,
                     }}
-                    whileInView={{ y: 0, rotate: 0, x: 0 }}
+                    whileInView={{ opacity: 1, y: 0, rotate: 0, x: 0 }}
                     viewport={{ once: false, amount: 0 }}
                     transition={{
                       type: "spring",
@@ -55,7 +56,7 @@ export default function Bunch({ text, mainWords = [1] }: Props) {
                       delay: 0.3 + (key * 0.3 + index * 0.05),
                     }}
                     className={`${mainWords.includes(key) ? "text-accent" : "text-secondary"} 
-                    text-4xl lg:text-5xl`}
+                    text-2xl lg:text-4xl`}
                   >
                     {char}
                   </motion.div>

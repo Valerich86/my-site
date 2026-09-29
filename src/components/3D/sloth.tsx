@@ -14,7 +14,6 @@ const Model = ({
 }) => {
   const gltf = useLoader(GLTFLoader, "/models/sloth.glb");
   const { names, actions } = useAnimations(gltf.animations, gltf.scene);
-
   const currentRotation = useRef({ x: 0, y: 0 });
   const isPlayingAction = useRef(false);
 
@@ -33,20 +32,14 @@ const Model = ({
   const handleClick = () => {
     const idleAction = actions.idle;
     const actionClip = actions.action;
-
     if (!actionClip) {
       console.warn('Анимация "action" не найдена! Проверь имя в Blender.');
       return;
     }
-
-    // Останавливаем idle
     idleAction?.stop();
-
-    // Настраиваем action: проиграть ровно 1 раз
     actionClip.reset();
-    actionClip.setLoop(THREE.LoopOnce, 1); // LoopOnce + 1 повтор = один проход
+    actionClip.setLoop(THREE.LoopOnce, 1); 
     actionClip.play();
-
     isPlayingAction.current = true;
   };
 
@@ -56,27 +49,19 @@ const Model = ({
       (targetRotation.x - currentRotation.current.x) * 8 * delta;
     currentRotation.current.y +=
       (targetRotation.y - currentRotation.current.y) * 8 * delta;
-
     gltf.scene.rotation.x = currentRotation.current.x;
     gltf.scene.rotation.y = currentRotation.current.y;
-
     // Логика переключения по окончанию анимации
     if (isPlayingAction.current) {
       const actionClip = actions.action;
       const idleAction = actions.idle;
-
       if (!actionClip || !idleAction) return;
-
       const clip = actionClip.getClip();
-      // Если время анимации достигло длительности — значит, она закончилась
       if (actionClip.time >= clip.duration) {
         actionClip.stop();
-
-        // Возвращаем idle в режим цикла и запускаем
         idleAction.reset();
         idleAction.setLoop(THREE.LoopRepeat, Infinity);
         idleAction.play();
-
         isPlayingAction.current = false;
       }
     }
@@ -113,7 +98,6 @@ export default function Sloth() {
         const rotation = scrollY * 0.001; 
         const maxRotation = 0.6;
         const minRotation = -0.6;
-
         targetRotation.current.x = Math.max(
           minRotation,
           Math.min(maxRotation, rotation),
@@ -129,21 +113,16 @@ export default function Sloth() {
       const handleMouseMove = (event: MouseEvent) => {
         const normalizedX = (event.clientX / window.innerWidth) * 2 - 0.2;
         const normalizedY = -(event.clientY / window.innerHeight) * 2 - 1;
-
         targetRotation.current.x = -normalizedY * 0.2;
         targetRotation.current.y = normalizedX * 0.7;
       };
-
       window.addEventListener("mousemove", handleMouseMove);
       return () => window.removeEventListener("mousemove", handleMouseMove);
     }
   }, [isMobile.current]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+    <div
       className={`h-20 w-20 lg:h-30 lg:w-30 top-0 -left-5 absolute z-10 transition duration-1000 cursor-pointer`}
       style={{ touchAction: "auto" }}
     >
@@ -153,6 +132,6 @@ export default function Sloth() {
           <Environment preset="forest" />
         </Suspense>
       </Canvas>
-    </motion.div>
+    </div>
   );
 }

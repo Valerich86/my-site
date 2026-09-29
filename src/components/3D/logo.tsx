@@ -29,10 +29,7 @@ export default function Logo() {
   const lightColor = "#ffffff";
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+    <div
       className={`h-15 w-33 lg:h-20 lg:w-50 absolute top-1/2 -translate-y-1/2 left-10 lg:left-15 transition-transform duration-1000 `}
     >
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 3, 0.2], fov: 50 }}>
@@ -55,6 +52,6 @@ export default function Logo() {
           <Model />
         </Suspense>
       </Canvas>
-    </motion.div>
+    </div>
   );
 }

@@ -1,28 +1,28 @@
+'use client';
+
 import Image from "next/image";
 
 interface Props {
-  name: string;
+  src: string;
   alt?: string;
-  top?: number;
-  right?: number;
 }
 
 export default function ImageBlock({
-  name,
-  alt = "Изображение ленивца",
-  top = 0,
-  right = 0,
+  src,
+  alt = "Изображение",
 }: Props) {
   return (
-    <div className="w-full h-screen absolute inset-0">
+    <div className="h-75 sm:h-125 lg:h-75 w-full flex items-center overflow-hidden relative border border-accent-dark rounded-2xl">
       <Image
-        src={`/images/${name}`}
+        src={src}
         loading="eager"
         alt={alt}
         width={100}
         height={100}
-        className="object-contain border border-accent-dark rounded-2xl"
+        quality={100}
+        className="object-cover h-full w-full rounded-2xl select-none grayscale-50"
       />
+      <div className="absolute inset-0 pointer-events-none w-full h-full select-none img-overlay"/>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function HeroAnimation() {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [hide, setHide] = useState(true);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -16,7 +17,7 @@ export default function HeroAnimation() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Воспроизводим все видео в контейнере
+            setHide(false);
             videos.forEach((v) => {
               const playPromise = v.play();
               if (playPromise !== undefined) {
@@ -27,14 +28,14 @@ export default function HeroAnimation() {
               }
             });
           } else {
-            // Пауза, когда ушли из viewport
+            setHide(true);
             videos.forEach((v) => v.pause());
           }
         });
       },
       {
         root: null,
-        threshold: 0.1, // 10% элемента должно быть видно
+        threshold: 0, 
       }
     );
 
@@ -46,10 +47,10 @@ export default function HeroAnimation() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 w-full h-full flex justify-center lg:justify-end -z-10"
+      className={`absolute inset-0 w-full h-full flex justify-center lg:justify-end -z-10`}
     >
       <motion.div
-        className="h-full"
+        className={`${hide && "hidden"} h-full`}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3 }}
@@ -73,7 +74,7 @@ export default function HeroAnimation() {
           playsInline
           preload="none"
         >
-          <source src="/video/puzzle-mobile.webm" type="video/webm" />
+          <source src="/video/cubes-mobile.webm" type="video/webm" />
         </video>
       </motion.div>
     </div>
